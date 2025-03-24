@@ -38,4 +38,21 @@ body {
     height: auto;
     border-radius: 5px;
   }
+
+  h1, h2 {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow:
+    -1px -1px 0 red,
+     1px -1px 0 red,
+    -1px  1px 0 red,
+     1px  1px 0 red;
+ }
+
+ h2 {
+    font-size: 2rem;
+  }
   
