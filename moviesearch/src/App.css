@@ -55,4 +55,15 @@ body {
  h2 {
     font-size: 2rem;
   }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
   
