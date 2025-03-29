@@ -9,8 +9,8 @@ function App() {
 
   const handleSearch = () => {
     fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=c8add343`)
-      .then(response => response.json()) 
-      .then(data => setMovies(data.Search)) 
+      .then(response => response.json())
+      .then(data => setMovies(data.Search))
       .catch(error => console.error(error));
   };
 
@@ -18,7 +18,7 @@ function App() {
     const storedFavorites = localStorage.getItem("favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
-  
+
   const addToFavorites = (movie) => {
     const isAlreadyFavorite = favorites.some(fav => fav.imdbID === movie.imdbID);
     if (!isAlreadyFavorite) {
@@ -27,7 +27,14 @@ function App() {
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     }
   };
-  
+
+  const removeFromFavorites = (imdbID) => {
+    const updatedFavorites = favorites.filter(fav => fav.imdbID !== imdbID);
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+
 
 
   return (
@@ -35,7 +42,7 @@ function App() {
       <nav>
         <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link>
       </nav>
-  
+
       <Routes>
         <Route
           path="/"
@@ -43,8 +50,8 @@ function App() {
             <div className="app-container">
               <h1>Movie Search App</h1>
               <h2>Search for Movies</h2>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
                 onKeyDown={(event) => {
@@ -52,10 +59,10 @@ function App() {
                     handleSearch();
                   }
                 }}
-                placeholder="Enter movie name" 
+                placeholder="Enter movie name"
               />
               <button onClick={handleSearch}>Search</button>
-  
+
               <div className="movie-results">
                 {movies.map(movie => (
                   <div key={movie.imdbID} className="movie-card">
@@ -69,15 +76,21 @@ function App() {
             </div>
           }
         />
-  
+
         <Route
           path="/favorites"
-          element={<Favorites favorites={favorites} />}
+          element={
+            <Favorites
+              favorites={favorites}
+              removeFromFavorites={removeFromFavorites}
+            />
+          }
         />
+
       </Routes>
     </div>
   );
-  
+
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Favorites({ favorites }) {
+function Favorites({ favorites, removeFromFavorites }) {
   return (
     <div className="app-container">
       <h1>My Favorite Movies</h1>
@@ -13,7 +13,10 @@ function Favorites({ favorites }) {
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <img src={movie.Poster} alt={movie.Title} />
+              <button onClick={() => removeFromFavorites(movie.imdbID)}>Remove from Favorites</button>
             </div>
+        
+
           ))
         )}
       </div>
