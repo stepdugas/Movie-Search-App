@@ -95,5 +95,11 @@ body {
     margin-bottom: 2rem;
     width: 100%;
   }
+
+  .movie-card:hover {
+    transform: scale(1.1) rotate(1deg);
+    box-shadow: 0 12px 24px rgba(255, 0, 0, 0.5);
+  }
+  
   
   
