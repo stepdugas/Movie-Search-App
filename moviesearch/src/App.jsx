@@ -2,10 +2,16 @@ import { useState } from "react";
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Favorites from './Favorites.jsx';
+import Watchlist from './WatchList.jsx';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
+
+  const [watchlist, setWatchlist] = useState(() => {
+    const storedWatchlist = localStorage.getItem("watchlist");
+    return storedWatchlist ? JSON.parse(storedWatchlist) : [];
+  });
 
   const handleSearch = () => {
     fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=c8add343`)
@@ -34,13 +40,29 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
+  const addToWatchlist = (movie) => {
+    const isAlreadyInWatchlist = watchlist.some(watch => watch.imdbID === movie.imdbID);
+    if (!isAlreadyInWatchlist) {
+      const updatedWatchlist = [...watchlist, movie];
+      setWatchlist(updatedWatchlist);
+      localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
+    }
+  };
+
+  const removeFromWatchlist = (imdbID) => {
+    const updatedWatchlist = watchlist.filter(watch => watch.imdbID !== imdbID);
+    setWatchlist(updatedWatchlist);
+    localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
+  };
+
+
 
 
 
   return (
     <div>
       <nav>
-        <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link>
+        <Link to="/">Home</Link> | <Link to="/favorites">Favorites</Link> | <Link to="/watchlist">Watchlist</Link>
       </nav>
 
       <Routes>
@@ -70,6 +92,7 @@ function App() {
                     <p>{movie.Year}</p>
                     <img src={movie.Poster} alt={movie.Title} />
                     <button onClick={() => addToFavorites(movie)}>Save to Favorites</button>
+                    <button onClick={() => addToWatchlist(movie)}>Add to Watchlist</button>
                   </div>
                 ))}
               </div>
@@ -86,6 +109,17 @@ function App() {
             />
           }
         />
+
+        <Route
+          path="/watchlist"
+          element={
+            <Watchlist
+              watchlist={watchlist}
+              removeFromWatchlist={removeFromWatchlist}
+            />
+          }
+        />
+
 
       </Routes>
     </div>
