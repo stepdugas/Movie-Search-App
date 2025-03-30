@@ -35,13 +35,3 @@ This project was a practice app I built after learning React — designed to hel
 - Basic CSS
 
 ---
-
-### ✅ **2. Add & Push README to GitHub**
-
-In terminal:
-
-```bash
-git add README.md
-git add Home.png BatmanSearch.png Favorites.png watchlist.png
-git commit -m "Add README and demo screenshots"
-git push origin main
