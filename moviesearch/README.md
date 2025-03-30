@@ -1,12 +1,47 @@
-# React + Vite
+# 🎬 Movie Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React app to search movies, save favorites, and organize a watchlist.
 
-Currently, two official plugins are available:
+This project was a practice app I built after learning React — designed to help me learn React basics, routing, and working with APIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- Search movies using the OMDb API
+- Save movies to your **Favorites**
+- Add movies to your **Watchlist**
+- Remove movies from either list
+- Persistent storage using **localStorage**
+- Clean and simple design
 
-## Expanding the ESLint configuration
+## 📸 Demo Screenshots
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Home Page
+![Home](./Home.png)
+
+### Movie Search Results
+![Search](./BatmanSearch.png)
+
+### Favorites Page
+![Favorites](./Favorites.png)
+
+### Watchlist Page
+![Watchlist](./watchlist.png)
+
+
+## 📂 Tech Stack
+- React
+- React Router
+- OMDb API
+- Local Storage
+- Basic CSS
+
+---
+
+### ✅ **2. Add & Push README to GitHub**
+
+In terminal:
+
+```bash
+git add README.md
+git add Home.png BatmanSearch.png Favorites.png watchlist.png
+git commit -m "Add README and demo screenshots"
+git push origin main
